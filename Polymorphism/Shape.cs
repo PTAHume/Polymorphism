@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace PolymorphismC
 {
-    abstract class Shape
+    internal abstract class Shape
     {
         public string Name { get; set; }
+
         public virtual void GetInfo()
         {
             Console.WriteLine($"\n This is a {Name}");
