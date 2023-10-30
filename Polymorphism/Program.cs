@@ -7,16 +7,18 @@ namespace Polymorphism
 {
     internal class Program
     {
-        // Create a base class Car with two properties HP and Color
-        // Create a Constructor setting those two properties
-        // Create a Method called ShowDetails() which shows the HP and Color of the car on the console
-        // Create a Repair Method which writes "Car was repaired!" onto the console
-        // Create two deriving classes, BMW and Audi, which have their own constructor and have an aditional property
-        // called Model. Also a private member called brand. Brand should be different in each of the two classes.
-        // Create the two methods ShowDetails() and Repair in them as well. Adjust those methods accordingly.
+
+        public delegate bool MyFilterDelegate(Person p);
 
         private static void Main(string[] args)
         {
+            // Create a base class Car with two properties HP and Color
+            // Create a Constructor setting those two properties
+            // Create a Method called ShowDetails() which shows the HP and Color of the car on the console
+            // Create a Repair Method which writes "Car was repaired!" onto the console
+            // Create two deriving classes, BMW and Audi, which have their own constructor and have an aditional property
+            // called Model. Also a private member called brand. Brand should be different in each of the two classes.
+            // Create the two methods ShowDetails() and Repair in them as well. Adjust those methods accordingly
             // a car can be a BMW, an Audi, a Porsche etc.
             // Polymorphism at work #1: an Audi,  BMW, Porsche
             // can all be used whereever a Car is expected. No cast is
@@ -78,12 +80,48 @@ namespace Polymorphism
                 }
 
                 object cube1 = new Cube(7);
-                Cube cube2  = (Cube)cube1;
+                Cube cube2 = (Cube)cube1;
 
                 Console.WriteLine("{0} has a volume of {1}", cube2.Name, cube2.Volume());
             }
 
+            Person p1 = new Person { Name = "Aiden", Age = 41 };
+            Person p2 = new Person { Name = "Sif", Age = 69 };
+            Person p3 = new Person { Name = "Walter", Age = 12 };
+            Person p4 = new Person { Name = "Anatoli", Age = 25 };
+
+            List<Person> people = new List<Person>() { p1, p1, p2, p3, p4 };
+
+            DisplayPeople("Adults", people, IsAdult);
+
             Console.ReadKey();
+        }
+
+        private static void DisplayPeople(string title, List<Person> people, MyFilterDelegate filer)
+        {
+            Console.WriteLine(title);
+            foreach (Person p in people)
+            {
+                if (filer(p))
+                {
+                    Console.WriteLine("{0}, {1} years old", p.Name, p.Age);
+                }
+            }
+        }
+
+        private static bool IsMinor(Person p)
+        {
+            return p.Age >= 18;
+        }
+
+        private static bool IsAdult(Person p)
+        {
+            return p.Age >= 18;
+        }
+
+        private static bool IsSenior(Person p)
+        {
+            return p.Age >= 65;
         }
     }
 }
