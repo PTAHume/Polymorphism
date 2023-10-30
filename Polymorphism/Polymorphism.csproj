@@ -62,6 +62,8 @@
     <Compile Include="Audi.cs" />
     <Compile Include="BMW.cs" />
     <Compile Include="Car.cs" />
+    <Compile Include="CarIDInfo.cs" />
+    <Compile Include="M3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

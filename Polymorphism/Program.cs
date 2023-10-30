@@ -40,17 +40,27 @@ namespace Polymorphism
 
             Car bmwZ3 = new BMW(200, "black", "Z3");
             Car audiA3 = new Audi(100, "green", "A3");
+            bmwZ3.GetCarIDInfo();
             bmwZ3.ShowDetails();
             audiA3.ShowDetails();
 
-
+            bmwZ3.SetCarIDInfo(1234, "Denis Panjuta");
+            audiA3.SetCarIDInfo(1235, "Frank White");
+            bmwZ3.GetCarIDInfo();
+            audiA3.GetCarIDInfo();
 
             BMW bmwM5 = new BMW(330, "white", "M5");
+            bmwM5.SetCarIDInfo(2222, "foo bar");
+            bmwM5.GetCarIDInfo();
             bmwM5.ShowDetails();
 
             Car carB = (Car)bmwM5;
+            carB.SetCarIDInfo(111, "baz moo");
+            carB.GetCarIDInfo();
             carB.ShowDetails();
 
+            M3 myM3 = new M3(260, "red", "M3 Super Turbo");
+            myM3.Repair();
             Console.ReadKey();
         }
     }

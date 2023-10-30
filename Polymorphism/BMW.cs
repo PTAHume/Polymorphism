@@ -24,7 +24,8 @@ namespace Polymorphism
             Console.WriteLine("Brand " + brand + " HP: " + HP + " color:" + Color);
         }
 
-        public override void Repair()
+        //prevent inheritance of classes that derive this class
+        public sealed override void Repair()
         {
             Console.WriteLine("The BMW {0} was repaired", Model);
         }
