@@ -94,6 +94,16 @@ namespace Polymorphism
 
             DisplayPeople("Adults", people, IsAdult);
 
+            //create a variable assigned to an anonymous method
+            MyFilterDelegate filter = delegate (Person P)
+            {
+                return P.Age >= 20 && P.Age <= 30;
+            };
+
+            DisplayPeople("Custom between 20 & 30", people, filter);
+
+            DisplayPeople("Show all", people, delegate (Person p) { return true; });
+
             Console.ReadKey();
         }
 
