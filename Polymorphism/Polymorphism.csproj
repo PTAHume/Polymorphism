@@ -63,9 +63,12 @@
     <Compile Include="BMW.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="CarIDInfo.cs" />
+    <Compile Include="Cube.cs" />
     <Compile Include="M3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shape.cs" />
+    <Compile Include="Sphere.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
