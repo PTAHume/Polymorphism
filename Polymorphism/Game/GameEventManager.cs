@@ -8,8 +8,9 @@ namespace PolymorphismC
 
         /*Events are forced to behave like a list (+=/-=) 
           foo += mydelgate or foo -= mydelgate is ok but foo = mydelgate is not ok
-            Delgate allows signing of = so foo = mydelgate is now ok as is the above 
-            but deligate will be overidden whenever set so only set the once
+          events can not be triggered outside of the class that defines then
+         Delgate allows signing of = so foo = mydelgate is now ok as is the above 
+         but deligate will be overidden whenever set so only set the once
         */
         public static event GameEvent OnGameStart, OnGameOver;
 
