@@ -6,7 +6,7 @@ namespace PolymorphismC
     {
         public delegate void GameEvent();
 
-        public static GameEvent OnGameStart, OnGameOver;
+        public  static event GameEvent OnGameStart, OnGameOver;
 
         public static void TriggerGameStart()
         {
