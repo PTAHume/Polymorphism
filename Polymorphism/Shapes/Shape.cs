@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PolymorphismC
 {
@@ -12,7 +8,7 @@ namespace PolymorphismC
 
         public virtual void GetInfo()
         {
-            Console.WriteLine($"\n This is a {Name}");
+            Console.WriteLine($"This is a {Name}");
         }
 
         public abstract double Volume();

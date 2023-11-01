@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using PolymorphismC;
+using PolymorphismC.Game;
 
 namespace Polymorphism
 {
@@ -11,6 +11,98 @@ namespace Polymorphism
         public delegate bool MyFilterDelegate(Person p);
 
         private static void Main(string[] args)
+        {
+            //Polymorphism
+            Console.WriteLine("============ Polymorphism Examples =========");
+            RunCarLogic();
+            Console.WriteLine("\n");
+
+            //Simple Delegate & abstract class
+            Console.WriteLine("============  Abstract Class Examples =========");
+            RunShapeLogic();
+            Console.WriteLine("\n");
+
+            Console.WriteLine("============ Simple Delegate Examples =========");
+            RunPeopleLogic();
+            Console.WriteLine("\n");
+
+            Console.WriteLine("============ Multi Casting Delegates Examples =========");
+            RunGameLogic();
+            Console.WriteLine("\n");
+        }
+
+        private static void RunGameLogic()
+        {
+            AudioSystem audioSystem = new AudioSystem();
+            RenderingEngine renderingEngine = new RenderingEngine();
+
+            Player player1 = new Player("Bob");
+            Player player2 = new Player("Jane");
+            Player player3 = new Player("Mat");
+
+            GameEventManager.TriggerGameStart();
+
+            Console.WriteLine("Game is running...Press any key to end the game");
+
+            Console.Read();
+
+            GameEventManager.TriggerGameOver();
+
+            Console.ReadKey();
+        }
+
+        private static void RunShapeLogic()
+        {
+            Shape[] shapes = { new Sphere(4), new Cube(3) };
+
+            foreach (Shape shape in shapes)
+            {
+                shape.GetInfo();
+                Console.WriteLine("{0} has a volume of {1}", shape.Name, shape.Volume());
+
+                Cube iceCube = shape as Cube;
+                if (iceCube != null)
+                {
+                    Console.WriteLine("This shape is no cube");
+                }
+
+                if (shape is Cube)
+                {
+                    Console.WriteLine("This is a cube");
+                }
+
+                object cube1 = new Cube(7);
+                Cube cube2 = (Cube)cube1;
+
+                Console.WriteLine("{0} has a volume of {1}", cube2.Name, cube2.Volume());
+            }
+        }
+
+        private static void RunPeopleLogic()
+        {
+            Person p1 = new Person { Name = "Aiden", Age = 41 };
+            Person p2 = new Person { Name = "Sif", Age = 69 };
+            Person p3 = new Person { Name = "Walter", Age = 12 };
+            Person p4 = new Person { Name = "Anatoli", Age = 25 };
+
+            List<Person> people = new List<Person>() { p1, p1, p2, p3, p4 };
+
+            DisplayPeople("Minors", people, IsAdult);
+            DisplayPeople("Adults", people, IsAdult);
+            DisplayPeople("Senior", people, IsAdult);
+
+            //create a variable assigned to an anonymous method
+            MyFilterDelegate filter = delegate (Person P)
+            {
+                return P.Age >= 20 && P.Age <= 30;
+            };
+
+            DisplayPeople("Custom between 20 & 30", people, filter);
+
+            DisplayPeople("Show all", people, delegate (Person p) { return true; });
+        }
+
+        private static void RunCarLogic()
         {
             // Create a base class Car with two properties HP and Color
             // Create a Constructor setting those two properties
@@ -23,7 +115,7 @@ namespace Polymorphism
             // Polymorphism at work #1: an Audi,  BMW, Porsche
             // can all be used whereever a Car is expected. No cast is
             // required because an implicit conversion exists from a derived
-            // class to its base class.
+            // class to its base class
             var cars = new List<Car>
             {
                 new Audi(200, "blue", "A4"),
@@ -60,51 +152,6 @@ namespace Polymorphism
 
             M3 myM3 = new M3(260, "red", "M3 Super Turbo");
             myM3.Repair();
-
-            Shape[] shapes = { new Sphere(4), new Cube(3) };
-
-            foreach (Shape shape in shapes)
-            {
-                shape.GetInfo();
-                Console.WriteLine("{0} has a volume of {1}", shape.Name, shape.Volume());
-
-                Cube iceCube = shape as Cube;
-                if (iceCube != null)
-                {
-                    Console.WriteLine("This shape is no cube");
-                }
-
-                if (shape is Cube)
-                {
-                    Console.WriteLine("This is a cube");
-                }
-
-                object cube1 = new Cube(7);
-                Cube cube2 = (Cube)cube1;
-
-                Console.WriteLine("{0} has a volume of {1}", cube2.Name, cube2.Volume());
-            }
-
-            Person p1 = new Person { Name = "Aiden", Age = 41 };
-            Person p2 = new Person { Name = "Sif", Age = 69 };
-            Person p3 = new Person { Name = "Walter", Age = 12 };
-            Person p4 = new Person { Name = "Anatoli", Age = 25 };
-
-            List<Person> people = new List<Person>() { p1, p1, p2, p3, p4 };
-
-            DisplayPeople("Adults", people, IsAdult);
-
-            //create a variable assigned to an anonymous method
-            MyFilterDelegate filter = delegate (Person P)
-            {
-                return P.Age >= 20 && P.Age <= 30;
-            };
-
-            DisplayPeople("Custom between 20 & 30", people, filter);
-
-            DisplayPeople("Show all", people, delegate (Person p) { return true; });
-
-            Console.ReadKey();
         }
 
         private static void DisplayPeople(string title, List<Person> people, MyFilterDelegate filer)

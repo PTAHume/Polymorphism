@@ -59,19 +59,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audi.cs" />
-    <Compile Include="BMW.cs" />
-    <Compile Include="Car.cs" />
-    <Compile Include="CarIDInfo.cs" />
-    <Compile Include="Cube.cs" />
-    <Compile Include="M3.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="Game\GameEventManager.cs" />
+    <Compile Include="Game\AudioSystem.cs" />
+    <Compile Include="Vehicles\Audi.cs" />
+    <Compile Include="Vehicles\BMW.cs" />
+    <Compile Include="Vehicles\Car.cs" />
+    <Compile Include="Vehicles\CarIDInfo.cs" />
+    <Compile Include="Vehicles\Cube.cs" />
+    <Compile Include="Vehicles\M3.cs" />
+    <Compile Include="Person\Person.cs" />
+    <Compile Include="Game\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shape.cs" />
-    <Compile Include="Sphere.cs" />
+    <Compile Include="Game\RenderingEngine.cs" />
+    <Compile Include="Shapes\Shape.cs" />
+    <Compile Include="Shapes\Sphere.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".editorconfig" />
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
